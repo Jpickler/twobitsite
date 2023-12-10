@@ -44,51 +44,38 @@ const Flags = () => {
           const randomAnswer = (Math.floor(Math.random() * possibleFlags.length)) + 1;
           setTheFlagImage(flagData[randomAnswer].flagImage);
           buttonName = flagData[randomAnswer].name;
-          console.log(`this is the button name for the answer: `, buttonName);
           //remove the value from the array of choices
           indexOfNumToDelete = possibleFlags.indexOf(randomAnswer); 
-          // it is not returning the index of the number
           possibleFlags.splice(indexOfNumToDelete, 1);
 
-         //
         }else{
         //do this for the remaining answers
-        // randomChoice = (Math.floor(Math.random() * possibleFlags.length)) + 1;
         randomChoice = (Math.floor(Math.random() * possibleFlags.length));
 
         buttonName = flagData[randomChoice].name;
-        // console.log(`this is the button name for the choices: `, buttonName);
 
         //remove the value from the array of choices
         indexOfNumToDelete = possibleFlags.indexOf(randomChoice);
         possibleFlags.splice(indexOfNumToDelete, 1);
 
-        //isAnswer = false;
         };
 
-        // randomButton = (Math.floor(Math.random() * possibleChoices.length)) + 1;
         randomButton = (Math.floor(Math.random() * possibleChoices.length));
         buttonChoice = possibleChoices[randomButton];
-        console.log(`button choice  generated`, buttonChoice);
 
         //set the button name
-        console.log(`this is the buttonName before the switch`, buttonName);
         switch (buttonChoice) {
           case 1: await setButton1Name(buttonName);
             if (isAnswer) {setButton1IdName(`answer`)};
-            console.log(`set the first button to: `, buttonName);
             break;
           case 2: await setButton2Name(buttonName);
             if (isAnswer) {setButton2IdName(`answer`)};
-            console.log(`set the second button to: `, buttonName);
             break;
           case 3: await setButton3Name(buttonName);
           if (isAnswer) {setButton3IdName(`answer`)};
-            console.log(`set the third button to: `, buttonName);
             break;
           case 4: await setButton4Name(buttonName);
             if (isAnswer) {setButton4IdName(`answer`)};
-            console.log(`set the fourth button to: `, buttonName);
             break;
         };
 
@@ -96,7 +83,6 @@ const Flags = () => {
 
         //remove the value from the array of choices
         possibleChoices.splice(indexOfNumToDelete, 1);
-        console.log(`choices that are left: `, possibleChoices);
         isAnswer = false;
       };
 
@@ -110,7 +96,9 @@ const Flags = () => {
       setTheQuestion();
     }, []);
 
-
+    const handleButtonClick = (id) => {
+      console.log(`button was clicked id =`, id);
+    };
 
 
 
@@ -125,10 +113,10 @@ const Flags = () => {
 
       <h2> Which State flag is this?</h2>
       <img id="flagImage" src={theFlagImage} alt="picture of a state flag" />
-        <button id = {button1IdName}> {button1Name} </button>
-        <button id = {button2IdName}> {button2Name} </button>
-        <button id = {button3IdName}> {button3Name} </button>
-        <button id = {button4IdName}> {button4Name} </button>
+        <button id = {button1IdName} onClick={() => handleButtonClick(button1IdName)}> {button1Name} </button>
+        <button id = {button2IdName} onClick={() => handleButtonClick(button2IdName)}> {button2Name} </button>
+        <button id = {button3IdName} onClick={() => handleButtonClick(button3IdName)}> {button3Name} </button>
+        <button id = {button4IdName} onClick={() => handleButtonClick(button4IdName)}> {button4Name} </button>
 
     </>
     // )}
