@@ -11,6 +11,10 @@ const Flags = () => {
   const [button2Name, setButton2Name] = useState("button 2");
   const [button3Name, setButton3Name] = useState("button 3");
   const [button4Name, setButton4Name] = useState("button 4");
+  const [button1IdName, setButton1IdName] = useState("wrong");
+  const [button2IdName, setButton2IdName] = useState("wrong");
+  const [button3IdName, setButton3IdName] = useState("wrong");
+  const [button4IdName, setButton4IdName] = useState("wrong");
   const [theFlagImage, setTheFlagImage] = useState(``);
 
   //Variables to adjust dificulty and expand with more flags:
@@ -46,7 +50,7 @@ const Flags = () => {
           // it is not returning the index of the number
           possibleFlags.splice(indexOfNumToDelete, 1);
 
-          isAnswer = false;
+         //
         }else{
         //do this for the remaining answers
         // randomChoice = (Math.floor(Math.random() * possibleFlags.length)) + 1;
@@ -59,7 +63,7 @@ const Flags = () => {
         indexOfNumToDelete = possibleFlags.indexOf(randomChoice);
         possibleFlags.splice(indexOfNumToDelete, 1);
 
-        isAnswer = false;
+        //isAnswer = false;
         };
 
         // randomButton = (Math.floor(Math.random() * possibleChoices.length)) + 1;
@@ -70,16 +74,20 @@ const Flags = () => {
         //set the button name
         console.log(`this is the buttonName before the switch`, buttonName);
         switch (buttonChoice) {
-          case 1: await setButton1Name(buttonName);// change this to html code and set as a variable
+          case 1: await setButton1Name(buttonName);
+            if (isAnswer) {setButton1IdName(`answer`)};
             console.log(`set the first button to: `, buttonName);
             break;
           case 2: await setButton2Name(buttonName);
+            if (isAnswer) {setButton2IdName(`answer`)};
             console.log(`set the second button to: `, buttonName);
             break;
           case 3: await setButton3Name(buttonName);
+          if (isAnswer) {setButton3IdName(`answer`)};
             console.log(`set the third button to: `, buttonName);
             break;
           case 4: await setButton4Name(buttonName);
+            if (isAnswer) {setButton4IdName(`answer`)};
             console.log(`set the fourth button to: `, buttonName);
             break;
         };
@@ -89,6 +97,7 @@ const Flags = () => {
         //remove the value from the array of choices
         possibleChoices.splice(indexOfNumToDelete, 1);
         console.log(`choices that are left: `, possibleChoices);
+        isAnswer = false;
       };
 
     }// end assignButton function
@@ -116,11 +125,10 @@ const Flags = () => {
 
       <h2> Which State flag is this?</h2>
       <img id="flagImage" src={theFlagImage} alt="picture of a state flag" />
-      <button> {button1Name} </button>
-      <button> {button2Name} </button>
-      <button> {button3Name} </button>
-      <button> {button4Name} </button>
-
+        <button id = {button1IdName}> {button1Name} </button>
+        <button id = {button2IdName}> {button2Name} </button>
+        <button id = {button3IdName}> {button3Name} </button>
+        <button id = {button4IdName}> {button4Name} </button>
 
     </>
     // )}
@@ -131,45 +139,3 @@ const Flags = () => {
 export default Flags
 
 
-// **************DELETED CODE ********************************
-
-// const setChoices = (i) => {
-//   return new Promise((resolve)=> {
-//   let num = getRandomFlag();
-//   // console.log(num);
-//   let buttonName = flagData[num].name;
-//   setTheQuestion(buttonName);
-//   resolve();
-// });
-// };
-
-
-// // getTheAnswer sets the correct answer and includes the answer in the buttons
-// const getTheAnswer = () => {
-//   return new Promise((resolve)=> {
-//   setTheAnswer(flagData[getRandomFlag()]);
-//   let buttonName=flagData.name;
-//   setTheQuestion(buttonName);
-//   resolve();
-// });
-// };
-
-// //this useEffect sets the question and answers
-// useEffect(() => {
-//   const setQuestion = async () => {
-//     for (let i = 1; i < 5; i++) {
-//       await setChoices(i);
-//     };
-//       await getTheAnswer();
-//     setLoading(false)
-//   };
-
-//   setQuestion(theAnswer);
-// }, []);
-
-
-// console.log(`outside useEffect the answer: `, theAnswer.name);
-// console.log(`button 1 `, button1Name);
-// console.log(`button 2 `, button2Name);
-// console.log(`button 3 `, button3Name);
-// console.log(`button 4 `, button4Name);
