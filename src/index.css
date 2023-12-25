@@ -11,7 +11,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: green;
+  /* background-color: #B9C1BF; */
+  background-color: #12141E;
 }
 
 
@@ -21,7 +22,7 @@ h1 {
 
 /*FORMS STYLING HERE */
 input{
-  background-color: tan;
+  background-color: B9C1BF;
   margin: 2px;
 }
 
@@ -32,13 +33,13 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: tan;
+  background-color: #e79e15;
   transition: border-color 0.25s;
 }
 
 div{
   border-style: solid;
-  border-color: black;
+  border-color: #4364BB;
   border-width: 3px;
 
 }
